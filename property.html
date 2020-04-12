@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Property</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- filters -->
+        <h1>Filters: {{ message | upper }}</h1>
+
+        <!-- methods -->
+        <h1>Methods: {{ upper(message) }}</h1>
+
+        <!-- computed -->
+        <h1>Computed: {{ messageUpperCase }}</h1>
+    </div>
+    <script src="dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue'
+            },
+            filters: {
+                upper(text) {
+                    return text.toUpperCase()
+                }
+            },
+            methods: {
+                upper(text) {
+                    return text.toUpperCase()
+                }
+            },
+            computed: {
+                messageUpperCase() {
+                    return this.message.toUpperCase()
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

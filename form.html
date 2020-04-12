@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <form>
+            <input type="text" name="judul" :value="judul" @input="title = $event.target.value">
+        </form>
+        <br><br>
+
+        <!--
+            Modifier number - memastikan input data dari user bertipe numeric.
+            modifier trim - menghapus spasi putih diawal atau akhir dari string.
+        -->
+        <form>
+            <input type="number" name="price" v-model.number="price" placeholder="masukkan price">
+            {{ price }}<br><br>
+            <input type="text" name="title" v-model.trim="title" placeholder="masukkan judul">
+            {{ title }} <br><br>
+            <textarea name="description" v-model="description" placeholder="masukkan deskripsi"></textarea>
+            {{ description }}<br><br>
+            Paket <br>
+            <input type="radio" name="bukuA" value="A" v-model="paket">
+            <label for="bukuA">Buku Laravel</label>
+            <br>
+            <input type="radio" name="bukuB" value="B" v-model="paket">
+            <label for="bukuB">Buku Vue</label>
+            <br>
+            <input type="radio" name="bukuAB" value="AB" v-model="paket">
+            <label for="bukuAB">Buku Laravel + Vue</label>
+            <br>
+            <span>Pilihan paket: {{ paket }}</span>
+            <br><br>
+            <select name="category" v-model="category">
+                <option disabled value="">Please Select One</option>
+                <option value="01">Graphic Programming</option>
+                <option value="02">Mobile Application Development</option>
+                <option value="03">Virtual and Augmented Reality</option>
+            </select>
+            <span>Selected: {{ category }}</span>
+            <br><br>
+            <!-- BOOLEAN -->
+            Gender :
+            <input type="checkbox" name="gender" v-model="gender">
+            <label for="gender">{{ gender }}</label>
+            <br><br>
+
+            <!-- Input Data Array -->
+            Hobi <br>
+            <input type="checkbox" name="hobby1" value="nonton" v-model="hobbies">
+            <label for="hobby1">Nonton</label>
+            <input type="checkbox" name="hobby2" value="jalan" v-model="hobbies">
+            <label for="hobby2">Nonton</label>
+            <input type="checkbox" name="hobby3" value="makan" v-model="hobbies">
+            <label for="hobby3">Nonton</label>
+            <br>
+            <span>Pilihan hobi : {{ hobbies }}</span>
+            <hr>
+            <select name="categories" v-model="categories" multiple>
+                <option value="01">Graphic Programming</option>
+                <option value="02">Mobile Application Development</option>
+                <option value="03">Virtual and Augmented Reality</option>
+            </select>
+            <span>Selected: {{ categories }}</span>
+            <br><br>
+            <!-- dengan v-for -->
+            <select name="categories" v-model="categories" multiple>
+                <option v-for="option in options" :value="option.value">
+                    {{ option.text }}
+                </option>
+            </select>
+            <span>Selected: {{ categories }}</span>
+            <br><br>
+            <!-- Filtering data List -->
+            <input type="text" name="" v-model="keyword" placeholder="ketikkan kata kunci">
+            <ul>
+                <li v-for="(book, index) of filterBooks" :key="index">
+                    {{ book }}
+                </li>
+            </ul>
+        </form>
+
+        <br><br>
+    </div>
+    <script src="dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                judul: 'Mastering PHP',
+                title: '',
+                description: '',
+                price: '',
+                paket: '',
+                category: '',
+                gender: true,
+                hobbies: [],
+                categories: [],
+                options: [{
+                        text: 'Graphics Programming',
+                        value: '01'
+                    },
+                    {
+                        text: 'Mobile Application Development',
+                        value: '02'
+                    },
+                    {
+                        text: 'Virtual and Augmented Reality',
+                        value: '03'
+                    }
+                ],
+                keyword: '',
+                books: [
+                    'C++ High Performance',
+                    'Mastering Linux Security and Hardening',
+                    'Python Programming Blueprints',
+                    'Mastering PostgreSQL 10 '
+                ]
+            },
+            computed: {
+                filterBooks() {
+                    return this.books.filter((book) => {
+                        return book.includes(this.keyword)
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Argumen pada Filters</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1> {{ price | formatCurrency('USD') }} </h1>
+        <h1> {{ price | formatCurrency('IDR') }} </h1>
+        <h1> {{ price | formatCurrency('EUR') }} </h1>
+    </div>
+    <script src="dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                price: 500000,
+            },
+            filters: {
+                formatCurrency(value, currency) {
+                    var formatter = new Intl.NumberFormat('id-ID', {
+                        style: 'currency',
+                        currency: currency,
+                        minimumFractionDigits: 2,
+                    });
+                    return formatter.format(value)
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

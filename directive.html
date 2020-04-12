@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Directive</title>
+</head>
+
+<body>
+    <div id="app">
+        <div v-if="nilai === 'A'"> Sempurna </div>
+        <div v-else-if="nilai === 'B'"> Bagus </div>
+        <div v-else-if="nilai === 'C'"> Cukup </div>
+        <div v-else> Kurang </div>
+        <!-- V-ON -->
+        <a href="http://vuejs.org" v-on:click="link($event)"> Vuejs.org </a>
+
+        <!-- penulisan directive dengan v-on -->
+        <button v-on:click="info('selamat datang')"> Informasi </button>
+        <!-- penulisan directive v-on: dapat disingkat menjadi @ -->
+        <button @click="info('Selamat Dtang')">Info</button>
+
+        <button v-on:click="counter += 1">
+            Counter +
+        </button>
+        <p>Button di atas telah diklik sebanyak {{ counter }} kali.</p>
+        <br>
+
+        <!-- mencegah reload halaman saat event submit -->
+        <form v-on:submit.prevent="onSubmit"></form>
+
+        <!-- ketika ditekan enter maka akan menjalankan fungsi submit -->
+        <input v-on:keyup.enter="info('Terima kasih ' + $event.target.value)">
+
+        <!-- Shift + Click -->
+        <button v-on:click.ctrl="info('hola')"> SHIFT + CLICK </button>
+    </div>
+    <script src="dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                nilai: 'A',
+                counter: 0,
+            },
+            methods: {
+                info(text) {
+                    alert(text)
+                },
+                link(event) {
+                    alert('Go to link')
+                    event.preventDefault()
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

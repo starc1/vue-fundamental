@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>V-FOR BIASA</h1>
+        <!-- LIST BIASA -->
+        <ul>
+            <li v-for="book in books">
+                {{ book }}
+            </li>
+        </ul>
+        <!-- V-FOR dengan TAG TEMPLATE -->
+        <h1>V-FOR dengan TAG TEMPLATE</h1>
+        <ul>
+            <template v-for="book in books">
+                <li> {{ book }} </li>
+            </template>
+        </ul>
+        <!-- V-FOR menggunakan INDEX -->
+        <h1>V-FOR menggunakan INDEX</h1>
+        <ul>
+            <li v-for="(book, index) in books">
+                {{ index+1 }}. {{ book }}
+            </li>
+        </ul>
+    </div>
+    <script src="dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                books: [
+                    'C++ High Performance',
+                    'Mastering Linux Security and Hardening',
+                    'Python Programming Blueprints',
+                    'Mastering PostgreSQL 10'
+                ]
+            }
+        })
+    </script>
+</body>
+
+</html>

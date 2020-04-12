@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue</title>
+    <style>
+        .title {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- vue ditandai dengan double kurawal {{ }} -->
+        <h1 v-once>{{ message }}</h1>
+        <h1 v-html="pesan"></h1>
+        <h1 v-bind:class="class_h1"> {{ message }} </h1>
+        <br>
+        <!--  menggabungkan teks statis dengan vue -->
+        <h1>Pesan {{ message }}</h1>
+        <br>
+        <!-- operasi Javascript untuk menggabungkan dua string -->
+        <h1>{{'Pesan: '+ message}}</h1>
+    </div>
+    <script src="dist/vue.js"></script>
+    <script>
+        // mounted cara 1
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue',
+                pesan: '<span style="color:red;">Hello World</span>',
+                class_h1: 'title'
+            },
+            // CREATE
+            // beforeCreate() {
+            //     console.log('before create: ' + 'message = ' + this.message)
+            // },
+            // created() {
+            //     console.log('created: ' + 'message = ' + this.message)
+            //     console.log(this.$data)
+            // },
+            // // MOUNT
+            // beforeMount() {
+            //     console.log('before mount: ' + 'el = ' + this.$el.textContent)
+            // },
+            // mounted() {
+            //     console.log('mounted: ' + 'el = ' + this.$el.textContent)
+            // },
+            // // UPDATE
+            // beforeUpdate() {
+            //     console.log('before update: ' + 'el = ' + this.$el.textContent)
+            // },
+            // updated() {
+            //     console.log('updated: ' + 'el = ' + this.$el.textContent)
+            // },
+            // // DESTROY
+            // beforeDestroy() {
+            //     console.log('before destroy')
+            // },
+            // destroyed() {
+            //     console.log('destroyed')
+            // },
+        })
+    </script>
+</body>
+
+</html>

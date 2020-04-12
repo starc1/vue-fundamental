@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .card {
+            background: #efefef;
+            border: 1px solid #ddd;
+            margin-right: 5px;
+            padding: 5px;
+            width: 200px;
+            float: left;
+        }
+
+        h3 {
+            min-height: 45px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <information>
+            <p>Hati - hati lantai licin</p>
+        </information>
+    </div>
+    <script src="dist/vue.js"></script>
+    <script>
+        Vue.component('information', {
+            template: `
+            <div class="card">
+                <strong>Informasi</strong>
+                <hr>
+                <slot></slot>
+            </div>
+        `
+        })
+        var app = new Vue({
+            el: '#app',
+        })
+    </script>
+</body>
+
+</html>
